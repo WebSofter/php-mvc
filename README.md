@@ -2,7 +2,7 @@
 
 ![Drag Racing](screen.png)
 
-* Автора: David Amirkhanov (@websofter) https://wsofter.ru
+* Автор: David Amirkhanov (@websofter) https://wsofter.ru
 * Видео: https://youtu.be/WraFsev5_oQ
 # Запуск через docker
 
@@ -24,4 +24,4 @@ $ docker-compose up -d
 Также нужно импортирвоать БД *db.sql*
 # Запуск на хостинге
 
-Для запуска на хостинге илли через OpenServer потребуется поменять настройки в * config/db * и импортировать базу данных *db.sql*
+Для запуска на хостинге илли через OpenServer потребуется поменять настройки в *config/db.php* и импортировать базу данных *db.sql*
