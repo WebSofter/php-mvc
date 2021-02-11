@@ -3,6 +3,7 @@
 ![Drag Racing](screen.png)
 
 * Автор: David Amirkhanov (@websofter) https://wsofter.ru
+* Демо: https://beejee.wsofter.ru/
 * Видео: https://youtu.be/WraFsev5_oQ
 # Запуск через docker
 
