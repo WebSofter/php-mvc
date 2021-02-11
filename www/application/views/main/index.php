@@ -1,6 +1,7 @@
 <p>Главная страница</p>
 <ul>
     <li>Автор: David Amirkhanov (@websofter) <a href ="https://wsofter.ru">https://wsofter.ru</a></li>
+    <li>GitHub: <a href="https://github.com/WebSofter/php-mvc">https://github.com/WebSofter/php-mvc</a></li>
     <li>Демо: <a href="https://beejee.wsofter.ru/">https://beejee.wsofter.ru/</a></li>
     <li>Видео: <a href="https://youtu.be/WraFsev5_oQ">https://youtu.be/WraFsev5_oQ</a></li>
     <li>Потрачено время: 10 часов</li>
