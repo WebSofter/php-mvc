@@ -5,6 +5,7 @@
 * Автор: David Amirkhanov (@websofter) https://wsofter.ru
 * Демо: https://beejee.wsofter.ru/
 * Видео: https://youtu.be/WraFsev5_oQ
+* Потрачено время: 10 часов
 # Запуск через docker
 
 ### Запускаем docker-compose
