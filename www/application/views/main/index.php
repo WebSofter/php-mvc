@@ -1,4 +1,10 @@
 <p>Главная страница</p>
+<ul>
+    <li>Автор: David Amirkhanov (@websofter) <a href ="https://wsofter.ru">https://wsofter.ru</a></li>
+    <li>Демо: <a href="https://beejee.wsofter.ru/">https://beejee.wsofter.ru/</a></li>
+    <li>Видео: <a href="https://youtu.be/WraFsev5_oQ">https://youtu.be/WraFsev5_oQ</a></li>
+    <li>Потрачено время: 10 часов</li>
+</ul>
 <a class="btn btn-success" href="task/new">Новая задача</a>
 <table class="table">
     <thead>
