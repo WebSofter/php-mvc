@@ -8,7 +8,9 @@ class TaskController extends Controller {
 
 	public function indexAction() {
 		$page = isset($_GET['page']) ? $_GET['page'] : 1;
-		$result = $this->model->getTasks($page);
+		$sort = isset($_GET['sort']) ? $_GET['sort'] : false;
+
+		$result = $this->model->getTasks($page, $sort);
 		$vars = [
 			'tasks' => $result['tasks'],
 			'nav' => $result['nav'],
@@ -16,44 +18,61 @@ class TaskController extends Controller {
 		$this->view->render('Все задачи', $vars);
 	}
 	public function newAction() {
-        $vars = [];
-        if(isset($_POST['title']) && isset($_POST['description']) && isset($_POST['date'])){
-            $this->model->addTask($_POST['title'], $_POST['description'], $_POST['date']);
-            unset($_POST['title']);
-            unset($_POST['description']);
-            unset($_POST['date']);
+        $title = isset($_POST['title']) ? $_POST['title'] : null;
+        $email = isset($_POST['email']) ? $_POST['email'] : null;
+        $description = isset($_POST['description']) ? $_POST['description'] : null;
+        $date = isset($_POST['date']) ? $_POST['date'] : null;
+        $vars = [
+            'title' => $title,
+            'email' => $email,
+            'description' => $description,
+            'date' => $date
+        ];
+        if($title && $email && $description && $date){
+            $this->model->addTask($title, $email, $description, $date);
             $this->view->render('Задача добавлена', $vars);
-        }else{
+        }else if($title || $email || $description || $date){
             $this->view->render('Новая задача', $vars);
+        }else{
+            $this->view->render('Новая задача');
         }
 	}
 	public function deleteAction() {
         $vars = [];
-        if(isset($_GET['task'])){
-            $this->model->deleteTask($_GET['task']);
+        if(isset($_GET['id'])){
+            $this->model->deleteTask($_GET['id']);
         }
 		$this->view->render('Удаление задачи', $vars);
 	}
 	public function editAction() {
-        if(isset($_POST['task']) && isset($_POST['title']) && isset($_POST['description']) && isset($_POST['date'])){
-            
-            unset($_POST['title']);
-            unset($_POST['description']);
-            unset($_POST['date']);
-            $vars = $this->model->updateTask($_POST['task'], $_POST['title'], $_POST['description'], $_POST['date']);
-            $task = $this->model->getTask($_POST['task']);
+        $id = isset($_POST['id']) ? $_POST['id'] : null;
+        $title = isset($_POST['title']) ? $_POST['title'] : null;
+        $email = isset($_POST['email']) ? $_POST['email'] : null;
+        $description = isset($_POST['description']) ? $_POST['description'] : null;
+        $date = isset($_POST['date']) ? $_POST['date'] : null;
+        $status = isset($_POST['status']) ? 1 : 0;
+        //debug($_POST);
+        //
+        if($id && $title && $email && $description && $date){
+            //&& isset($_POST['status'])
+            $vars = $this->model->updateTask($id, $title, $email, $description, $date, $status);
+            $task = $this->model->getTask($id);
             $vars = [
                 'title' => $task[0]['title'],
+                'email' => $task[0]['email'],
                 'description' => $task[0]['description'],
                 'date' => $task[0]['time'],
+                'status' => $task[0]['status'],
             ];
             $this->view->render('Задача обновлена', $vars);
         }else{
-            $task = $this->model->getTask($_GET['task']);
+            $task = $this->model->getTask($_GET['id']);
             $vars = [
                 'title' => $task[0]['title'],
+                'email' => $task[0]['email'],
                 'description' => $task[0]['description'],
                 'date' => $task[0]['time'],
+                'status' => $task[0]['status'],
             ];
             //debug($vars);
             $this->view->render('Обновление задачи', $vars);

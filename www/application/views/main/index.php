@@ -10,34 +10,42 @@
 <table class="table">
     <thead>
         <tr>
-            <th scope="col">#</th>
-            <th scope="col">Задача</th>
+            <th scope="col"><a href="?sort=id">#ID</a></th>
+            <th scope="col"><a href="?sort=title">Задача</a></th>
+            <th scope="col"><a href="?sort=email">Email</a></th>
             <th scope="col">Описание</th>
-            <th scope="col">Время</th>
-            <th scope="col">Статус</th>
+            <th scope="col"><a href="?sort=time">Время</a></th>
+            <th scope="col"><a href="?sort=status">Статус</a></th>
+            <?php if(isset($_SESSION['login'])):?>
             <th>Изменить</th>
             <th>Удалить</th>
+            <?php endif;?>
         </tr>
     </thead>
     <tbody>
         <?php $i = 1; ?>
         <?php foreach ($tasks as $val): ?>
         <tr>
-            <th scope="row"><?php echo $i; ?></th>
+            <th scope="row"><?php echo $val['id']; ?></th>
             <td><?php echo $val['title']; ?></td>
+            <td><?php echo $val['email']; ?></td>
             <td><?php echo $val['description']; ?></td>
             <td><?php echo $val['time']; ?></td>
-            <td><?php echo $val['status']; ?></td>
+            <td><?php echo empty(trim($val['status'])) > 0 ? 
+                "<i title='Задача в работе' class='fa fa-star cursor-pointer text-warning'></i> в работе" : 
+                "<i title='Задача завершена' class='fa fa-star cursor-pointer text-success'></i> завершено" ?></td>
+            <?php if(isset($_SESSION['login'])):?>
             <td>
-				<a href="/task/edit?task=<?php echo $val['id']; ?>">
+				<a href="/task/edit?id=<?php echo $val['id']; ?>">
 					<i class="fa fa-edit cursor-pointer text-warning"></i>
 				</a>
 			</td>
             <td>
-				<a href="/task/delete?task=<?php echo $val['id']; ?>">
+				<a href="/task/delete?id=<?php echo $val['id']; ?>">
 					<i class="fa fa-trash cursor-pointer text-danger"></i>
 				</a>
 			</td>
+            <?php endif;?>
         </tr>
         <?php $i++; ?>
         <?php endforeach; ?>

@@ -8,7 +8,9 @@ class MainController extends Controller {
 
 	public function indexAction() {
 		$page = isset($_GET['page']) ? $_GET['page'] : 1;
-		$result = $this->model->getTasks($page);
+		$sort = isset($_GET['sort']) ? $_GET['sort'] : false;
+
+		$result = $this->model->getTasks($page, $sort);
 		$vars = [
 			'tasks' => $result['tasks'],
 			'nav' => $result['nav'],

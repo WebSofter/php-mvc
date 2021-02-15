@@ -5,4 +5,8 @@ return [
 	'name' => 'db',
 	'user' => 'root',
 	'password' => 'secret',
+	'encrypt' => [
+		'key' => "test",
+		'iv' => "4544567891089421"
+	]
 ];
